@@ -1,0 +1,32 @@
+= Fast and Easy Web Server Installation
+ Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl>
+ Twitter: http://twitter.com/coto
+ Help: Rodrigo Bustos L. <rbustosx@gmail.com>
+ URL: http://protoboard.cl
+ Created: Mar 16, 2010 
+
+= Installation
+
+ bash bash_script/install
+
+= Description
+
+ Easy Web Sever Installation Script
+ This script help you to install and configure a Linux server with:
+	- TRAC
+	- SVN
+	- Iptables (Most secure)
+	- SSH (Change port by default and securitize)
+	- Apache
+	- Django (Web Framework of awesome Python)
+	- MySQL
+	- Mail Server
+
+= Platform
+
+ - Ubuntu
+ - CentOS
+ - Red Hat Enterprise Linux
+ - Debian
+ - Mandrake	
+ 	
