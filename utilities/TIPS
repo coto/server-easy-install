@@ -59,7 +59,10 @@ check Proccesor: 	cat /proc/cpuinfo
 check distro: 		uname -a
 check version:		cat /etc/redhat-release
 check hostname:		hostname -f
-
+####################################################################
+# Find files that contain a text string:
+####################################################################
+grep -lir "some text" *
 ####################################################################
 # Bash Color by Distro
 ####################################################################
