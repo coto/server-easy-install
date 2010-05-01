@@ -1,0 +1,43 @@
+#!/bin/bash
+####################################################################
+# Configuration File
+# Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl>
+# URL: http://www.protoboard.cl
+# Created: Apr 1, 2010 
+####################################################################
+folder_Backup=/folder_to_backup
+####################################################################
+# another user to don't work with root user
+####################################################################
+user='username'
+passwd='userpass'
+
+####################################################################
+# Port to conect by SSH
+####################################################################
+port='22'
+
+####################################################################
+# Admin's email
+####################################################################
+mailAdmin='user@domain.tld'
+
+####################################################################
+# Mailserver
+####################################################################
+nameSlice="sliceName"
+ipServer='xxx.xxx.xxx.xxx'
+gateway='xxx.xxx.xxx.1'
+mydomain='domain.tld'
+# note: some times gateway is same to ipServer, but with last number .1
+
+####################################################################
+# DNS
+####################################################################
+zone_id='xxx' # from https://manage.slicehost.com/zones/
+api_password='xxx' # from https://manage.slicehost.com/api
+google_unique_string='xxx' # from _
+
+
+
+
