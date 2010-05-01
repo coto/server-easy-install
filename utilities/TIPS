@@ -1,0 +1,110 @@
+
+USER='nameuser'
+IP='xxx.xxx.xxx.xxx'
+PORT='22'
+FOLDER_REMOTE='home/username'
+FOLDER_LOCAL='local'
+
+####################################################################
+# SFTP Connection
+####################################################################
+sftp -oPort=$PORT $USER@$IP
+sftp> get /$FOLDER_REMOTE/*
+
+####################################################################
+# Get Files from Server
+####################################################################
+scp -P $PORT $USER@$IP:/$FOLDER_REMOTE/* ./$FOLDER_LOCAL
+
+####################################################################
+# Connection to Server
+####################################################################
+scp -P $PORT $FOLDER_LOCAL/*  $USER@$IP:/$FOLDER_REMOTE
+
+####################################################################
+# Improve MySQL performance
+####################################################################
+# /etc/my.cnf
+#	"under [mysqld] module":
+skip-innodb
+skip-external-locking
+skip-locking
+key_buffer = 16K
+max_allowed_packet = 1M
+thread_stack = 64K
+thread_cache_size = 4
+sort_buffer = 64K
+net_buffer_length = 2K
+
+####################################################################
+# Improve Apache Httpd performance
+####################################################################
+# /etc/httpd/conf/httpd.conf
+<IfModule prefork.c>
+StartServers       3
+MinSpareServers    3
+MaxSpareServers    3
+ServerLimit        50
+MaxClients         50
+MaxRequestsPerChild  1000
+</IfModule>
+
+####################################################################
+# Check info's Server
+####################################################################
+check disk space: 	df -h
+check disk space:	df -H  | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $2 " " $1 }'
+check RAM size: 	free -m
+check Proccesor: 	cat /proc/cpuinfo
+check distro: 		uname -a
+check version:		cat /etc/redhat-release
+check hostname:		hostname -f
+
+####################################################################
+# Bash Color by Distro
+####################################################################
+# UBUNTU (user/root)
+export PS1="\[\e[0;36m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "
+export PS1="\[\e[1;31m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "
+
+# CENTOS (user/root)
+export PS1="\[\e[0;36m\]\u\[\e[1;35m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "
+export PS1="\[\e[1;31m\]\u\[\e[1;35m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "
+
+# REDHAT (user/root)
+export PS1="\[\e[0;36m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "
+export PS1="\[\e[1;31m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "
+
+####################################################################
+# Install dependencies to VirtualBOX
+####################################################################
+
+#echo -e "$cyan##### INSTALL KERNEL-DEVEL FOR VIRTUALBOX #####$endColor"  
+#yum -y install kernel-devel gcc
+# try to remove them after install the virtual machines (yum -y remove kernel-devel gcc )
+
+# This version Kernel must to be same to the Kernel running (check it with uname -r)
+#KernelVersion="kernel-2.6.18-194.el5.src.rpm"
+#wget ftp://ftp.redhat.com/pub/redhat/linux/enterprise/5Server/en/os/SRPMS/$KernelVersion
+#rpm -ivh $KernelVersion
+
+####################################################################
+# Install Samba
+####################################################################
+
+#echo -e "$cyan##### INSTALL SAMBA #####$endColor"  
+#yum -y install samba samba-client samba-common system-config-samba 
+
+####################################################################
+# Install Python 2.6.4
+####################################################################
+
+#echo -e "$cyan#####   Install Python 2.6.4   #####$endColor"
+#Default Python Application Environment Specification:
+#!/usr/bin/env python
+#Modified Python Application Environment Specification:
+#!/usr/bin/env python26
+#yum -y install gcc make
+#wget http://www.python.org/ftp/python/2.6.4/Python-2.6.4.tgz; tar zxf Python-2.6.4.tgz; cd Python-2.6.4; ./configure; make; make install; cd ../
+#rm -rf Python-2.6.4
+#yum -y remove gcc cpp make glibc-devel glibc-headers kernel-headers libgomp
