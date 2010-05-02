@@ -40,7 +40,7 @@ sshIptables(){
 # Configure and securitizing Apache
 ####################################################################
 secureApache(){
-	echo -e "$cyan\n============================= Configure and securitizing Apache ================================$endColor"
+	echo -e "$cyan\n====================== Configure and securitizing Apache ==========================$endColor"
 
 	echo -e "$cyan#####    Reset Folders @ Apache  #####$endColor"
 	rm -rf /var/www/passwd
@@ -77,7 +77,7 @@ secureApache(){
 # Configure and securitizing MySQL
 ####################################################################
 secureMySQL(){
-	echo -e "$cyan\n============================= Configure and securitizing MySQL ================================$endColor"
+	echo -e "$cyan\n======================= Configure and securitizing MySQL ==========================$endColor"
 
 	echo -e "$cyan##### Start mysqld  #####$endColor"
 	sudo /etc/init.d/mysqld start
@@ -122,7 +122,7 @@ secureMySQL(){
 # Trac and SVN configuration
 ####################################################################
 tracsvn(){
-	echo -e "$cyan\n=============================== TRAC & SVN Config ==================================$endColor"
+	echo -e "$cyan\n=========================== TRAC & SVN Config ===============================$endColor"
 
 	echo -e "$cyan How many projects do you want?$endColor"
 	read nprojects
