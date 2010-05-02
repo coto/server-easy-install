@@ -5,10 +5,6 @@
  URL: http://protoboard.cl
  Created: Mar 16, 2010 
 
-= Installation
-
- bash bash_script/install
-
 = Description
 
  Easy Web Sever Installation Script
@@ -22,6 +18,10 @@
 	- MySQL
 	- Mail Server
 
+= Installation
+
+ bash bash_script/install
+
 = Platform
 
  - Ubuntu
@@ -29,4 +29,7 @@
  - Red Hat Enterprise Linux
  - Debian
  - Mandrake	
+
+= Licensed under the GPL
+http://www.gnu.org/licenses/gpl.html
  	
