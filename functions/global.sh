@@ -130,62 +130,72 @@ tracsvn(){
 	echo -e "$cyan How many projects do you want?$endColor"
 	read nprojects
 
-	#echo -e "$cyan#####    Create Trac User Mysql   #####$endColor"
-	#mysql -u$user -p$passwd -e "CREATE USER 'user_trac'@'localhost' IDENTIFIED BY \"$passwd\"; "
-
 	for i in `seq 1 $nprojects` 
 	do
 		echo -e "$cyan Project Name for number $i : $endColor"
 		read project_name 
 
+		echo -e "$cyan What database do you want?$endColor"
+		echo -e "\t$cyan 1) mySQL$endColor"
+		echo -e "\t$cyan 2) SQLite$endColor"
+
+		read dbtrac;
+		while [[ $dbtrac -gt 2 || ! $(echo $dbtrac | grep '^[1-9]') ]]
+		do
+			echo "Error: You must to choose an option"
+			read dbtrac
+		done
+
 		# SVN
-		mkdir -p /var/www/svn/$project_name 
-		mkdir -p /tmp/newsvn
-		mkdir -p /tmp/newsvn/$project_name/{trunk,tags,branches} 
-		svnadmin create /var/www/svn/$project_name --fs-type fsfs
+		sudo mkdir -p /var/www/svn/$project_name 
+		sudo mkdir -p /tmp/newsvn
+		sudo mkdir -p /tmp/newsvn/$project_name/{trunk,tags,branches} 
+		sudo svnadmin create /var/www/svn/$project_name --fs-type fsfs
 
-		svn import /tmp/newsvn/$project_name file:///var/www/svn/$project_name -m "Initial import" 
-		rm -rf /tmp/newsvn
-		chown -R apache:apache /var/www/svn/$project_name
-		chmod -R go-rwx /var/www/svn/$project_name
+		sudo svn import /tmp/newsvn/$project_name file:///var/www/svn/$project_name -m "Initial import" 
+		sudo rm -rf /tmp/newsvn
+		sudo chown -R apache:apache /var/www/svn/$project_name
+		sudo chmod -R go-rwx /var/www/svn/$project_name
 
-		####################################################################	
-		#TRAC w/MySQL (It uses $PassTrac)
-		####################################################################	
-		#mysql -u$user -p$passwd -e "CREATE DATABASE trac_$project_name; GRANT ALL ON trac_$project_name.* TO 'user_trac'@'localhost' IDENTIFIED BY \"$PassTrac\";"
-		#trac-admin /var/www/trac/public/$project_name initenv $project_name mysql://user_trac:$PassTrac@localhost:3306/trac_$project_name svn /var/www/svn/$project_name
+		if [[ $dbtrac = "1" ]]; then
+			####################################################################	
+			#TRAC w/MySQL (It uses $PassTrac)
+			####################################################################	
+			sudo mysql -u$user -p$passwd -e "CREATE DATABASE 'trac_$project_name'; GRANT ALL ON trac_$project_name.* TO '$user'@'localhost' IDENTIFIED BY \"$passwd\";"
+			sudo trac-admin /var/www/trac/public/$project_name initenv $project_name mysql://$user:$passwd@localhost:3306/trac_$project_name svn /var/www/svn/$project_name
+		else
+			####################################################################	
+			# Trac w/SQLite
+			####################################################################
+			sudo mkdir -p /var/www/trac/public/$project_name
+			sudo trac-admin /var/www/trac/public/$project_name initenv $project_name sqlite:db/trac.db svn /var/www/svn/$project_name
+		fi
 
-		####################################################################	
-		# Trac w/SQLite
-		####################################################################
-		mkdir -p /var/www/trac/public/$project_name
-		trac-admin /var/www/trac/public/$project_name initenv $project_name sqlite:db/trac.db svn /var/www/svn/$project_name
+		sudo chown -R apache:apache /var/www/trac/public/$project_name 
+		sudo chmod -R o-rwx /var/www/trac/public/$project_name
+		sudo chmod g+w /var/www/trac/public/$project_name/conf/trac.ini
 
-		chown -R apache:apache /var/www/trac/public/$project_name 
-		chmod -R o-rwx /var/www/trac/public/$project_name
-		chmod g+w /var/www/trac/public/$project_name/conf/trac.ini
-
-		trac-admin /var/www/trac/public/$project_name permission add $user TRAC_ADMIN
+		sudo trac-admin /var/www/trac/public/$project_name permission add $user TRAC_ADMIN
 	
 		echo -e "$cyan#####    Getting TRAC Logo   #####$endColor"
 
 		wget http://www.edgewall.org/gfx/trac_logo.png
-		mv ./trac_logo.png /var/www/trac/public/$project_name/htdocs/your_project_logo.png
+		sudo mv ./trac_logo.png /var/www/trac/public/$project_name/htdocs/your_project_logo.png
 
-	echo "
+		sudo echo "
 
-	[ticket-custom]
-	complete = select
-	complete.label = % Complete
-	complete.options = 0|5|10|15|20|25|30|35|40|45|50|55|60|65|70|75|80|85|90|95|100
-	complete.order = 3
-	due_assign = text
-	due_assign.label = Start (YYYY/MM/DD)
-	due_assign.order = 1
-	due_close = text
-	due_close.label = End (YYYY/MM/DD)
-	due_close.order = 2
-	" >> /var/www/trac/public/$project_name/conf/trac.ini
-	echo -e "$cyan====== Project $project_name on TRAC/SVN created successfully ======$endColor"
+		[ticket-custom]
+		complete = select
+		complete.label = % Complete
+		complete.options = 0|5|10|15|20|25|30|35|40|45|50|55|60|65|70|75|80|85|90|95|100
+		complete.order = 3
+		due_assign = text
+		due_assign.label = Start (YYYY/MM/DD)
+		due_assign.order = 1
+		due_close = text
+		due_close.label = End (YYYY/MM/DD)
+		due_close.order = 2
+		" >> /var/www/trac/public/$project_name/conf/trac.ini
+		echo -e "$cyan====== Project $project_name on TRAC/SVN created successfully ======$endColor"
 	done
 }
