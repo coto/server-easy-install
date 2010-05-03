@@ -9,14 +9,14 @@
 
  Easy Web Sever Installation Script
  This script help you to install and configure a Linux server with:
-	* TRAC
-	* SVN
-	* Iptables (Most secure)
-	* SSH (Change port by default and securitize)
-	* Apache
-	* Django (Web Framework of awesome Python)
-	* MySQL
-	* Mail Server
+* TRAC
+* SVN
+* Iptables (Most secure)
+* SSH (Change port by default and securitize)
+* Apache
+* Django (Web Framework of awesome Python)
+* MySQL
+* Mail Server
 
 = Installation
 
@@ -24,11 +24,11 @@
 
 = Platform
 
- * Ubuntu
- * CentOS
- * Red Hat Enterprise Linux
- * Debian
- * Mandrake	
+* Ubuntu
+* CentOS
+* Red Hat Enterprise Linux
+* Debian
+* Mandrake	
 
 = Licensed under the GPL
 http://www.gnu.org/licenses/gpl.html
