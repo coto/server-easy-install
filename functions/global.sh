@@ -3,7 +3,7 @@
 # Configurating SSH and IPTABLES
 ####################################################################
 sshIptables(){
-	echo -e "$cyan\n====================== Configurating SSH and IPTABLES  =========================$endColor"
+	echo -e "$cyan====================== Configurating SSH and IPTABLES  =========================$endColor"
 
 	if [ ! -f /etc/ssh/sshd_config.orig ]; then
 		cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
@@ -35,13 +35,13 @@ sshIptables(){
 	echo -e "$cyan##### IPTABLES & SSH RELOAD #####$endColor"
 	sudo /etc/init.d/iptables save
 	sudo /etc/init.d/sshd reload
-	echo -e "$cyan\n=============== SSH & IPTABLES setted successfully ===============$endColor"
+	echo -e "$cyan=============== SSH & IPTABLES setted successfully ===============$endColor"
 }
 ####################################################################
 # Configure and securitizing Apache
 ####################################################################
 secureApache(){
-	echo -e "$cyan\n====================== Configure and securitizing Apache ==========================$endColor"
+	echo -e "$cyan====================== Configure and securitizing Apache ==========================$endColor"
 
 	echo -e "$cyan#####    Reset Folders @ Apache  #####$endColor"
 	rm -rf /var/www/passwd
@@ -73,13 +73,13 @@ secureApache(){
 	cat tmp > $apache_conf
 	sed "/^ServerSignature On.*/ s/^ServerSignature On/ServerSignature Off/" $apache_conf > tmp
 	cat tmp > $apache_conf
-	echo -e "$cyan\n================ Apache was securitize successfully ===============$endColor"
+	echo -e "$cyan================ Apache was securitize successfully ===============$endColor"
 }
 ####################################################################
 # Configure and securitizing MySQL
 ####################################################################
 secureMySQL(){
-	echo -e "$cyan\n======================= Configure and securitizing MySQL ==========================$endColor"
+	echo -e "$cyan======================= Configure and securitizing MySQL ==========================$endColor"
 
 	echo -e "$cyan##### Start mysqld  #####$endColor"
 	sudo /etc/init.d/mysqld start
@@ -119,13 +119,13 @@ secureMySQL(){
 	cat /dev/null > ~/.mysql_history
 
 	sudo /etc/init.d/mysqld restart
-	echo -e "$cyan\n==================== MySQL was securitize successfully ===============$endColor"
+	echo -e "$cyan==================== MySQL was securitize successfully ===============$endColor"
 }
 ####################################################################
 # Trac and SVN configuration
 ####################################################################
 tracsvn(){
-	echo -e "$cyan\n=========================== TRAC & SVN Config ===============================$endColor"
+	echo -e "$cyan=========================== TRAC & SVN Config ===============================$endColor"
 
 	echo -e "$cyan How many projects do you want?$endColor"
 	read nprojects
@@ -186,6 +186,6 @@ tracsvn(){
 	due_close.label = End (YYYY/MM/DD)
 	due_close.order = 2
 	" >> /var/www/trac/public/$project_name/conf/trac.ini
-	echo -e "$cyan\n====== Project $project_name on TRAC/SVN created successfully ======$endColor"
+	echo -e "$cyan====== Project $project_name on TRAC/SVN created successfully ======$endColor"
 	done
 }
