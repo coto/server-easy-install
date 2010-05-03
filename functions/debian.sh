@@ -12,13 +12,8 @@ rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\
 createUser(){
 	echo -e "$cyan============================ Creating a user $user... =============================$endColor"
 
-	test_user=`id -u $user`;
-
 	apt-get install mkpasswd
-	if [ "$test_user" = "550" ]; then 
-		echo -e "$cyan##### REMOVING PREVIUOS USER ENTRY #####$endColor"
-		userdel -r $user
-	fi
+	userdel -r $user
 
 	echo -e "$cyan##### Add user $user #####$endColor"
 	adduser --system $user  --uid 550  --ingroup admin
