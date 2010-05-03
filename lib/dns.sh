@@ -61,5 +61,5 @@ if __name__ == '__main__':
 	####################################################################
 	sudo python set_DNS.py
 	rm -f set_DNS.py
-	echo -e "$cyan\n=============== DNS & Records setted successfully ===============$endColor"
+	echo -e "$cyan=============== DNS & Records setted successfully ===============$endColor"
 }

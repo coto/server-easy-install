@@ -95,6 +95,6 @@ rm -rf \$FOLDER_BACKUP/{svn,trac}
 " > /etc/cron.daily/simple-backup.sh
 
 	chmod +x /etc/cron.daily/simple-backup.sh
-	echo -e "$cyan\n=============== Cron Backup created successfully ===============$endColor"
+	echo -e "$cyan=============== Cron Backup created successfully ===============$endColor"
 }
 
