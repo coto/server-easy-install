@@ -100,5 +100,6 @@ mailServer(){
 
 	sudo /usr/bin/newaliases
 	echo -e "$cyan##### Aliases Added #####$endColor"
+	echo -e "$cyan\n=============== Mailserver created successfully ===============$endColor"
 
 }

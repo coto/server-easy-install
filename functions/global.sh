@@ -35,6 +35,7 @@ sshIptables(){
 	echo -e "$cyan##### IPTABLES & SSH RELOAD #####$endColor"
 	sudo /etc/init.d/iptables save
 	sudo /etc/init.d/sshd reload
+	echo -e "$cyan\n=============== SSH & IPTABLES setted successfully ===============$endColor"
 }
 ####################################################################
 # Configure and securitizing Apache
@@ -72,6 +73,7 @@ secureApache(){
 	cat tmp > $apache_conf
 	sed "/^ServerSignature On.*/ s/^ServerSignature On/ServerSignature Off/" $apache_conf > tmp
 	cat tmp > $apache_conf
+	echo -e "$cyan\n================ Apache was securitize successfully ===============$endColor"
 }
 ####################################################################
 # Configure and securitizing MySQL
@@ -117,6 +119,7 @@ secureMySQL(){
 	cat /dev/null > ~/.mysql_history
 
 	sudo /etc/init.d/mysqld restart
+	echo -e "$cyan\n==================== MySQL was securitize successfully ===============$endColor"
 }
 ####################################################################
 # Trac and SVN configuration
@@ -183,6 +186,6 @@ tracsvn(){
 	due_close.label = End (YYYY/MM/DD)
 	due_close.order = 2
 	" >> /var/www/trac/public/$project_name/conf/trac.ini
-
+	echo -e "$cyan\n====== Project $project_name on TRAC/SVN created successfully ======$endColor"
 	done
 }

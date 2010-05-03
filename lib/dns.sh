@@ -45,20 +45,21 @@ if __name__ == '__main__':
     main()
 " > ./set_DNS.py
 
-####################################################################
-# set new path to install pyactiveresource
-####################################################################
-sed "/^.*package_dir=.*$/ s/src/$base_path\/resources\/pyactiveresource\/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
-cat tmp > $base_path/resources/pyactiveresource/setup.py
-sudo python $base_path/resources/pyactiveresource/setup.py install
-####################################################################
-# set new path to install pyactiveresource
-####################################################################
-sed "/^.*package_dir=.*$/ s/$base_path\/resources\/pyactiveresource\/src/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
-cat tmp > $base_path/resources/pyactiveresource/setup.py
-####################################################################
-# Setting DNSs
-####################################################################
-sudo python set_DNS.py
-rm -f set_DNS.py
+	####################################################################
+	# set new path to install pyactiveresource
+	####################################################################
+	sed "/^.*package_dir=.*$/ s/src/$base_path\/resources\/pyactiveresource\/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
+	cat tmp > $base_path/resources/pyactiveresource/setup.py
+	sudo python $base_path/resources/pyactiveresource/setup.py install
+	####################################################################
+	# set new path to install pyactiveresource
+	####################################################################
+	sed "/^.*package_dir=.*$/ s/$base_path\/resources\/pyactiveresource\/src/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
+	cat tmp > $base_path/resources/pyactiveresource/setup.py
+	####################################################################
+	# Setting DNSs
+	####################################################################
+	sudo python set_DNS.py
+	rm -f set_DNS.py
+	echo -e "$cyan\n=============== DNS & Records setted successfully ===============$endColor"
 }
