@@ -7,8 +7,7 @@
 
 = Description
 
- Easy Web Sever Installation Script
- This script help you to install and configure a Linux server with:
+ Fast and Easy Web Server Installation is a Bash Script that help you to install and configure a Linux server with:
 * TRAC
 * SVN
 * Iptables (Most secure)
