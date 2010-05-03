@@ -36,7 +36,10 @@ mydomain='domain.tld'
 ####################################################################
 zone_id='xxx' # from https://manage.slicehost.com/zones/
 api_password='xxx' # from https://manage.slicehost.com/api
-google_unique_string='xxx' # from _
+google_unique_string='xxx' # When you add a Domain Alias in Google Apps
+
+# SPF records: to allow web server send emails.
+# ASPMX & ALT records: to Set up email delivery
 
 dns="
 data = (
