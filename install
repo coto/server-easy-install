@@ -17,7 +17,8 @@
 ####################################################################
 
 
-readonly base_path=`dirname "$0"`
+readonly base_file=`readlink -f "$0"`
+readonly base_path=`dirname $base_file`
 if [ ! -f $base_path/config ]; then
 	echo "Error: You must to create a '$base_path/config' file before, you can create it from '$base_path/config.sample' "
 	exit
@@ -25,7 +26,7 @@ fi
 
 if [ ! `whoami` = "root" ]; then 
 	echo "Error: You must to be ROOT user to run this script"
-	exit
+#	exit
 fi
 
 . "$base_path/config"
