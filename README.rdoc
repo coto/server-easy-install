@@ -6,7 +6,7 @@
  Created: Mar 16, 2010 
 
 = Description
-Fast and Easy Web Server Installation is a Bash Script that help you to install and configure a Linux server with:
+((*Fast and Easy Web Server Installation*)) is a Bash Script that help you to install and configure a Linux server with:
 * TRAC
 * SVN
 * Iptables (Most secure)
