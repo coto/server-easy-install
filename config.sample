@@ -38,6 +38,30 @@ zone_id='xxx' # from https://manage.slicehost.com/zones/
 api_password='xxx' # from https://manage.slicehost.com/api
 google_unique_string='xxx' # from _
 
-
-
+dns="
+data = (
+	('NS',	'@',				'ns1.slicehost.net.',	0),
+	('NS',	'@',				'ns2.slicehost.net.',	0),
+	('NS',	'@',				'ns3.slicehost.net.',	0),
+	('A',	'$mydomain.',		'$ipServer',	0),
+	('A',	'SUBDOMAIN_1',			'$ipServer',	0),
+	('A',	'SUBDOMAIN_2',				'$ipServer',	0),
+	('CNAME',	google_string,		'google.com.',	0),
+	('CNAME',	'mail',			'ghs.google.com.',	0),
+	('CNAME',	'calendar',		'ghs.google.com.',	0),
+	('CNAME',	'docs',			'ghs.google.com.',	0),
+	('CNAME',	'moderator',		'ghs.google.com.',	0),
+	('CNAME',	'sites',		'ghs.google.com.',	0),
+	('CNAME',	'short',		'ghs.google.com.',	0),
+	('MX',	'$mydomain.',		'ASPMX.L.GOOGLE.COM.',		10),
+	('MX',	'$mydomain.',		'ALT1.ASPMX.L.GOOGLE.COM.',	20),
+	('MX',	'$mydomain.',		'ALT2.ASPMX.L.GOOGLE.COM.',	20),
+	('MX',	'$mydomain.',		'ASPMX2.GOOGLEMAIL.COM.',	30),
+	('MX',	'$mydomain.',		'ASPMX3.GOOGLEMAIL.COM.',	30),
+	('MX',	'$mydomain.',		'ASPMX4.GOOGLEMAIL.COM.',	30),
+	('MX',	'$mydomain.',		'ASPMX5.GOOGLEMAIL.COM.',	30),
+	('TXT',	'$mydomain.',		spf_value,	0),
+)
+"
+#note: please set SUBDOMAINS before
 

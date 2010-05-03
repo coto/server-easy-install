@@ -25,7 +25,7 @@ fi
 
 if [ ! `whoami` = "root" ]; then 
 	echo "Error: You must to be ROOT user to run this script"
-	exit
+	#exit
 fi
 
 . "$base_path/config"
@@ -45,5 +45,3 @@ fi
 
 printMenu
 
-# Run Cron Backup
-#cronBackup
