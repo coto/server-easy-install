@@ -15,6 +15,7 @@
 * Django (Web Framework of awesome Python)
 * MySQL
 * Mail Server
+* Virtualhost
 
 = Installation
 
