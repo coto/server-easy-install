@@ -1,4 +1,8 @@
-
+####################################################################
+# Author: Rodrigo Augosto C.
+# date: May 3, 2010
+# credits: http://code.google.com/p/pyactiveresource/
+####################################################################
 set_dns(){
 
 echo "
