@@ -4,13 +4,15 @@
 echo "redhat functions were loaded"
 apache_conf='/etc/httpd/conf/httpd.conf'
 
-# Recommended to CENTOS 
-userProfile='export PS1="\[\e[0;36m\]\u\[\e[1;35m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
-rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;35m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
-
-# Recommended to REDHAT
-userProfile='export PS1="\[\e[0;36m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
-rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
+if [ "${DIST}" = "CentOS" ] ; then
+	# Recommended to CENTOS 
+	userProfile='export PS1="\[\e[0;36m\]\u\[\e[1;35m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
+	rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;35m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
+else
+	# Recommended to REDHAT
+	userProfile='export PS1="\[\e[0;36m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
+	rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
+fi
 ####################################################################
 # Create USER
 ####################################################################
