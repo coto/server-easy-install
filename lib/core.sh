@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cyan='\e[1;37;44m'
+red='\e[1;31m'
 endColor='\e[0m'
 datetime=$(date +%Y%m%d%H%M%S)
 
@@ -114,7 +115,7 @@ get_DistroBasedOn(){
 ####################################################################
 printMenu(){
 	if [[ "$user" = "" || "$passwd" = "" || "$port" = "" ]]; then
-		echo -e "ERROR: USER, PASS AND PORT ARE REQUIRED, PLEASE SET THEM IN CONFIG FILE"
+		echo -e "$red Error: USER, PASS AND PORT ARE REQUIRED, PLEASE SET THEM IN CONFIG FILE $endColor"
 		echo ""
 		echo ""
 		exit 1 

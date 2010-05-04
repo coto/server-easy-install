@@ -16,8 +16,8 @@ rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;31m\]@\H \[\033[0;36m\] \w\[\e[0m\
 ####################################################################
 createUser(){
 	if [ ! `whoami` = "root" ]; then 
-		echo "Error: You must to be ROOT user to run this script"
-		exit
+		echo -e "$red Error: You must to be ROOT user to run this script $endColor"
+		return
 	fi
 	echo -e "$cyan============================ Creating a user $user... =============================$endColor"
 

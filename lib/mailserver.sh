@@ -8,8 +8,8 @@
 # cat /var/log/maillog
 mailServer(){
 	if [ "$nameSlice" = "" ]; then
-			echo -e "ERROR: You must to set a nameSlice on config file"
-			exit 1 
+		echo -e "$red Error: You must to set a nameSlice on config file $endColor"
+		return 
 	fi
 
 	####################################################################

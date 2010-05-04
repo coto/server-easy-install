@@ -142,7 +142,7 @@ tracsvn(){
 		read dbtrac;
 		while [[ $dbtrac -gt 2 || ! $(echo $dbtrac | grep '^[1-9]') ]]
 		do
-			echo "Error: You must to choose an option"
+			echo -e "$red Error: You must to choose an option $endColor"
 			read dbtrac
 		done
 
