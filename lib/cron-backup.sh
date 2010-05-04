@@ -1,8 +1,11 @@
 
 cronBackup(){
-
-mkdir -p $folder_Backup > /dev/null
-echo "
+if [ ! `whoami` = "root" ]; then 
+	echo -e "$red Error: You must to be ROOT user to run this function $endColor"
+	return
+fi
+sudo mkdir -p $folder_Backup > /dev/null
+sudo echo "
 #!/bin/sh
 ####################################################################
 # A simple backup script to SVN, TRAC, MYSQL & APACHE FOLDERS
@@ -90,7 +93,7 @@ rm -rf \$FOLDER_BACKUP/{svn,trac}
 # tar -cvf \$FOLDER_BACKUP/\$today.tar /\$FOLDER_BACKUP/\$today 2>&1 > /dev/null
 " > /etc/cron.daily/simple-backup.sh
 
-	chmod +x /etc/cron.daily/simple-backup.sh
+	sudo chmod +x /etc/cron.daily/simple-backup.sh
 	echo -e "$cyan=============== Cron Backup created successfully ===============$endColor"
 }
 
