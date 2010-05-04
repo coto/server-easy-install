@@ -48,13 +48,13 @@ if __name__ == '__main__':
 	####################################################################
 	# set new path to install pyactiveresource
 	####################################################################
-	sed "/^.*package_dir=.*$/ s/src/$base_path\/resources\/pyactiveresource\/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
+	sed "/^.*package_dir=.*$/ s/src/\$base_path\/resources\/pyactiveresource\/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
 	cat tmp > $base_path/resources/pyactiveresource/setup.py
 	sudo python $base_path/resources/pyactiveresource/setup.py install
 	####################################################################
 	# set new path to install pyactiveresource
 	####################################################################
-	sed "/^.*package_dir=.*$/ s/$base_path\/resources\/pyactiveresource\/src/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
+	sed "/^.*package_dir=.*$/ s/\$base_path\/resources\/pyactiveresource\/src/src/" $base_path/resources/pyactiveresource/setup.py  > tmp
 	cat tmp > $base_path/resources/pyactiveresource/setup.py
 	####################################################################
 	# Setting DNSs
