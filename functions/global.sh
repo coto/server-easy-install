@@ -161,7 +161,7 @@ tracsvn(){
 			####################################################################	
 			#TRAC w/MySQL (It uses $PassTrac)
 			####################################################################	
-			sudo mysql -u$user -p$passwd -e "CREATE DATABASE 'trac_$project_name'; GRANT ALL ON trac_$project_name.* TO '$user'@'localhost' IDENTIFIED BY \"$passwd\";"
+			sudo mysql -u$user -p$passwd -e "CREATE DATABASE trac_$project_namegit; GRANT ALL ON trac_$project_name.* TO '$user'@'localhost' IDENTIFIED BY \"$passwd\";"
 			sudo trac-admin /var/www/trac/public/$project_name initenv $project_name mysql://$user:$passwd@localhost:3306/trac_$project_name svn /var/www/svn/$project_name
 		else
 			####################################################################	
