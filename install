@@ -24,11 +24,6 @@ if [ ! -f $base_path/config ]; then
 	exit
 fi
 
-if [ ! `whoami` = "root" ]; then 
-	echo "Error: You must to be ROOT user to run this script"
-	exit
-fi
-
 . "$base_path/config"
 . "$base_path/functions/global.sh"
 . "$base_path/lib/mailserver.sh"
