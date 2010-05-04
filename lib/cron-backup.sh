@@ -9,7 +9,7 @@ echo "
 # Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl> / Rodrigo Bustos L.
 # URL: http://www.protoboard.cl
 # Created: Mar 22, 2010 04:44:42
-# Version: 3.3
+# Version: 3.4
 #######################     Instrucctions     ######################
 # please be aware that you may need extra space on $folder_Backup
 # how to use it:
@@ -58,11 +58,7 @@ tar -cvf \$FOLDER_BACKUP/\$today-fol-svn.tar \$FOLDER_BACKUP/svn 2>&1 > /dev/nul
 # HTML
 ####################################################################
 
-HTMLS=\$(ls /var/www/html | awk '{ print \$1}')
-for h in \$HTMLS
-do
-	tar -cvf \$FOLDER_BACKUP/\$today-fol-html-\$h.tar /var/www/html/\$h 2>&1 > /dev/null
-done
+tar -cvf \$FOLDER_BACKUP/\$today-fol-html.tar /var/www/html 2>&1 > /dev/null
 
 ####################################################################
 # MySQL Dumps
