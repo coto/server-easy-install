@@ -38,7 +38,7 @@ def main():
     z = Zone.find(zone_id)
     for d in data:
         r = Record({'zone_id': z.id, 'record_type': d[0], 'name': d[1] , 'data': d[2],  'aux': d[3],  'ttl' : ttl_value, 'active' : 'Y'})
-        print 'Save record for',r.save()
+        print 'Save record for [',r.save(),'] for:\t',d[1],'\t-\t',d[2]
 
         
 if __name__ == '__main__':
