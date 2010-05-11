@@ -19,7 +19,7 @@
 
 = Installation
 
- bash FOLDER_SCRIPT/install
+ bash FOLDER_SCRIPT/install.sh
 
 = Platform
 
