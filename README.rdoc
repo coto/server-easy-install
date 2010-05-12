@@ -17,6 +17,8 @@
 * Mail Server
 * Virtualhost
 
+"Fast and Easy Web Server Installation" was tested on CentOS, Red Hat Enterprise Linux and Ubuntu. and It should works with Mandrake, Debian, Fedora
+
 = Installation
 
  bash FOLDER_SCRIPT/install.sh
