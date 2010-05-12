@@ -28,6 +28,7 @@ fi
 . "$base_path/functions/global.sh"
 . "$base_path/lib/mailserver.sh"
 . "$base_path/lib/cron-backup.sh"
+. "$base_path/lib/hook-svn/hooks_svn.sh"
 . "$base_path/lib/dns.sh"
 . "$base_path/lib/core.sh"
 

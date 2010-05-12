@@ -133,10 +133,11 @@ printMenu(){
 	echo -e "\t8) Create a Mail Server"
 	echo -e "\t9) Create a cron backup (mysql, apache, trac & svn)"
 	echo -e "\t10) Set DNS and to add Google Apps MX records (Only SliceHost.com)"
-	echo -e "\t11) I do not know, exit!"
+	#echo -e "\t11) Set Hooks on SVN"
+	echo -e "\t12) I do not know, exit!"
 	#echo -e "\t7) Create VirtualHosts"
 	read option;
-	while [[ $option -gt 11 || ! $(echo $option | grep '^[1-9]') ]]
+	while [[ $option -gt 12 || ! $(echo $option | grep '^[1-9]') ]]
 	do
 		printMenu
 	done
@@ -157,7 +158,8 @@ runOption(){
 		8) mailServer;;
 		9) cronBackup;;
 		10) set_dns;;
-		11) exit
+#		11) hooks_svn;;
+		12) exit
 #		7) CreateVirtualHosts;;
 	esac 
 	echo "Press any Key to continue"
