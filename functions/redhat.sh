@@ -69,10 +69,16 @@ updateInstall(){
 	yum -y install python-setuptools MySQL-python mod_python Django
 	yum -y install subversion mod_dav_svn
 	
+	# Install Django 1.1.1
 	# wget http://www.djangoproject.com/download/1.1.1/tarball/
 	# tar -xzf Django-1.1.1.tar.gz
 	# rm -f Django-1.1.1.tar.gz
 	# cd Django-1.1.1
+
+	# Required to VirtualBox
+	# yum -y install gcc kernel-devel
+	# /etc/init.d/vboxdrv setup
+	# yum -y remove gcc kernel-devel
 
 	echo -e "$cyan#####    Starting apache & mysql at boot time   #####$endColor"
 	sudo /sbin/chkconfig httpd on
