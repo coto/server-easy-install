@@ -3,6 +3,11 @@
 ####################################################################
 echo "redhat functions were loaded"
 apache_conf='/etc/httpd/conf/httpd.conf'
+apache_user='apache'
+ssh_service='/etc/init.d/sshd'
+mysql_service='mysqld'
+apache_service='/etc/init.d/httpd'
+
 
 if [ "${DIST}" = "CentOS" ] ; then
 	# Recommended to CENTOS 

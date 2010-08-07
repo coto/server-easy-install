@@ -1,0 +1,194 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="layout.html" />
+  <xi:include href="macros.html" />
+<head>
+<style>
+table.list {
+    width:100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+}
+
+table.with-cells td {
+    border: 1px solid #d7d7d7;
+}
+
+table.list td {
+    padding:2px;
+}
+
+table.list thead th {
+    text-align: center;
+    background: #eee;
+    border: 1px solid #d7d7d7;
+    color: #777;
+}
+
+table.list tbody th {
+    font-weight: bold;
+    background: #eed;
+    border: 1px solid #d7d7d7;
+    color: #777;
+}
+
+.tip {
+  display: none; text-align:left;
+}
+
+.ticket {
+  font-size: 9px;
+}
+
+
+.textright {
+  text-align:right;
+}
+
+.active {
+   background-color:#fff;
+}
+.holiday {
+   background-color: #f6f7f8;
+   color: black;
+}
+.today {
+   background-color: #ffe0e0;
+}
+
+div.ticket:hover span.tip{
+  display:block;
+  position:absolute;
+  border:1px solid #555;
+  background-color: #ffe;
+  font-size: 8pt;
+  z-index: 100;
+}
+
+body { behavior:url("${href.chrome('tc/csshover2.htc')}"); }
+</style>
+</head>
+<body>
+
+<?python
+ import calendar
+ mday = first
+?>
+<table border="1">
+</table>
+
+<form>
+<table class="list">
+  <tr>
+    <td>
+    </td>
+    <td>
+　      Milestone<select name="selected_milestone">
+             <option py:for="m in milestones" value="${m.name}" selected="${selected_milestone==m.name or None}">${m.name}</option>
+        </select>
+　　    <input type="checkbox" name="show_my_ticket" checked="$show_my_ticket" />Only display my tickets
+    </td>
+    <td align="right">
+　　    <input type="submit" value="Update" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <input type="button" value="&lt;&lt; ${to_unicode(calendar.month_name[prev.month])}" onclick="form.year.value = ${prev.year}; form.month.value = ${prev.month}; form.submit();"/>
+    </td>
+    <td align="center">
+        <select name="month">
+             <option py:for="m in [1,2,3,4,5,6,7,8,9,10,11,12]"
+                     value="$m" selected="${m==current.month or None}">${to_unicode(calendar.month_name[m])}</option>
+        </select>
+        <select name="year">
+             <option py:for="y in [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012]"
+                     value="$y" 
+                     selected="${y==current.year or None}">$y</option>
+        </select>
+    </td>
+    <td align="right">
+       <input type="button" value="${to_unicode(calendar.month_name[next.month])} &gt;&gt;" onclick="form.year.value = ${next.year}; form.month.value = ${next.month}; form.submit();"/>
+    </td>
+  </tr>
+</table>
+</form>
+
+<table class="list with-cells">
+<thead>
+<tr>
+<th></th>
+    <th style="width: 14%;">Sunday</th>
+    <th style="width: 14%;">Monday</th>
+    <th style="width: 14%;">Tuesday</th>
+    <th style="width: 14%;">Wednesday</th>
+    <th style="width: 14%;">Thursday</th>
+    <th style="width: 14%;">Friday</th>
+    <th style="width: 14%;">Saturday</th>
+    </tr>
+</thead>
+
+<tbody>
+  <tr py:for="w in range(0,((last - first).days + 1)/7)"
+      style="height: 60px;">
+    <th></th>
+    <span py:for="d in range(0,7)" py:strip="True" > 
+<?python
+  cls="active"
+  if d == 0 or d==6:
+     cls="holiday"
+  if mday == date.today():
+     cls="today"
+?>
+      <td class="$cls" style="width: 14%;" valign="top">
+      <div class="textright">${mday.day}</div>
+     <span py:for="t in tickets" py:strip="True" >
+<?python
+  img_url = None
+  if t['due_assign']==mday and t['due_close']!=mday:
+     img_url = href.chrome('tc/img/arrow_from.png')
+  if t['due_close']==mday and t['due_assign']!=mday:
+     img_url = href.chrome('tc/img/arrow_to.png')
+  if t['due_close']==mday and t['due_assign']==mday:
+     img_url = href.chrome('tc/img/arrow_bw.png')
+?>
+
+       <div py:if="img_url!= None" class="ticket">
+         <img src="$img_url" alt="+" />
+           <a href="${req.href.ticket()}/${t['id']}"><span class="type">${t['type']}</span><s py:strip="t['status']!='closed'">#${t['id']}:${t['summary']}</s></a>
+         <span class="tip">
+           <pre><span class="type">${t['type']}</span>#${t['id']}: ${t['summary']}</pre>
+           <strong>Owner</strong>: ${t['owner']}<br />
+           <strong>Open Date</strong>: ${t['due_assign']}<br />
+           <strong>Close Date</strong>: ${t['due_close']}<br />
+          <strong>Description</strong>: <pre>${t['description']}</pre>
+         </span>
+       </div>
+     </span>
+
+     <span py:for="m in milestones" py:strip="True" >
+        <div py:if="m['due']==mday" class="ticket">
+        <s py:strip="m['completed']!=True"><a href="${req.href.milestone()}/${m['name']}"><img src="${href.chrome('tc/img/package.png')}" />${m['name']}</a></s>
+      <span class="tip">
+        ${m['name']}<br />
+        <strong>Due</strong>: ${m['due']}<br />
+        <strong>Description</strong>: ${m['description']}<br />
+        </span>
+        </div>
+     </span>
+
+<?python
+  mday = mday + timedelta(days=1)
+?>
+
+    </td>
+    </span>
+<?python
+ mday = mday + timedelta(days=7)
+?>
+  </tr>
+</tbody>
+</table>
+</body>
+</html>

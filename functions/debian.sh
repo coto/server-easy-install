@@ -2,7 +2,11 @@
 # Vars
 ####################################################################
 echo "debian functions were loaded"
-apache_conf='/etc/apache2'
+apache_conf='/etc/apache2/apache2.conf'
+apache_user='www-data'
+ssh_service='/etc/init.d/ssh'
+mysql_service='mysql'
+apache_service='/etc/init.d/apche2'
 
 userProfile='export PS1="\[\e[0;36m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
 rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
@@ -17,6 +21,7 @@ createUser(){
 	echo -e "$cyan============================ Creating a user $user... =============================$endColor"
 
 	apt-get install mkpasswd
+        echo -e "$cyan##### Deleting user $user #####$endColor"
 	userdel -r $user
 
 	echo -e "$cyan##### Add user $user #####$endColor"

@@ -1,0 +1,5 @@
+
+        [trac.plugins]
+        ganttcalendar.ticketcalendar = ganttcalendar.ticketcalendar
+        ganttcalendar.ticketgantt = ganttcalendar.ticketgantt
+    

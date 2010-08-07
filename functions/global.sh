@@ -18,23 +18,36 @@ sshIptables(){
 
 	echo -e "$cyan##### IPTABLES RULES #####$endColor"
 	iptables -F
+	#  Allows all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
 	iptables -A INPUT -i lo -j ACCEPT
-	iptables -A INPUT -i ! lo -d 127.0.0.0/8 -j REJECT
+	iptables -A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
+	#  Accepts all established inbound connections
 	iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+	#  Allows all outbound traffic
 	iptables -A OUTPUT -j ACCEPT
+	# Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
 	iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 	iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 	iptables -A INPUT -p tcp --dport 21 -j ACCEPT 
+	#  Allows SSH connections
 	iptables -A INPUT -p tcp -m state --state NEW --dport $port -j ACCEPT
 	# Add VNC Port 5900
 	# iptables -A INPUT -p tcp -m state --state NEW --dport 5900 -j ACCEPT
+	# Allow ping
 	iptables -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+	# log iptables denied calls
+	iptables -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
+
+	# Reject all other inbound - default deny unless explicitly allowed policy
 	iptables -A INPUT -j REJECT
 	iptables -A FORWARD -j REJECT
 
 	echo -e "$cyan##### IPTABLES & SSH RELOAD #####$endColor"
-	sudo /etc/init.d/iptables save
-	sudo /etc/init.d/sshd reload
+	#sudo /etc/init.d/iptables save
+	/sbin/iptables-save
+
+	sudo $ssh_service reload
 	echo -e "$cyan=============== SSH & IPTABLES setted successfully ===============$endColor"
 }
 ####################################################################
@@ -43,14 +56,14 @@ sshIptables(){
 secureApache(){
 	echo -e "$cyan====================== Configure and securitizing Apache ==========================$endColor"
 
-	echo -e "$cyan#####    Reset Folders @ Apache  #####$endColor"
+	echo -e "$cyan#####    Reset Folders @ Apache in $apache_conf #####$endColor"
 	rm -rf /var/www/passwd
 
 	echo -e "$cyan#####    passwd Apache setup   #####$endColor"
 	mkdir -p /var/www/passwd
 	htpasswd -cb /var/www/passwd/.htpasswd $user $passwd
 	# htpasswd -b /var/www/passwd/.htpasswd another_user $passwd
-	chown -R apache:apache /var/www/passwd/
+	chown -R $apache_user:$apache_user /var/www/passwd/
 	chmod 644 /var/www/passwd/.htpasswd
 
 	echo -e "$cyan##### httpd.conf modified #####$endColor"
@@ -82,7 +95,7 @@ secureMySQL(){
 	echo -e "$cyan======================= Configure and securitizing MySQL ==========================$endColor"
 
 	echo -e "$cyan##### Start mysqld  #####$endColor"
-	sudo /etc/init.d/mysqld start
+	service $mysql_service start
 
 	echo -e "$cyan##### Reset mysqld #####$endColor"
 	MySQLRestore=/var/mysql.dump
@@ -91,7 +104,7 @@ secureMySQL(){
 	    echo "File $MySQLRestore exists"
 	    echo -e "$cyan##### Restore mysql Database #####$endColor" 
 	    mysql -u $user -p$passwd mysql < /var/mysql.dump
-	    sudo /etc/init.d/mysqld restart
+	    service $mysql_service restart
 	else
 	    echo "File $MySQLRestore does not exists"
 	    echo -e "$cyan##### Backup mysql Database #####$endColor" 
@@ -118,7 +131,7 @@ secureMySQL(){
 	echo -e "$cyan##### Remove history MySql #####$endColor" 
 	cat /dev/null > ~/.mysql_history
 
-	sudo /etc/init.d/mysqld restart
+	service $mysql_service restart
 	echo -e "$cyan==================== MySQL was securitize successfully ===============$endColor"
 }
 ####################################################################
@@ -154,7 +167,7 @@ tracsvn(){
 
 		sudo svn import /tmp/newsvn/$project_name file:///var/www/svn/$project_name -m "Initial import" 
 		sudo rm -rf /tmp/newsvn
-		sudo chown -R apache:apache /var/www/svn/$project_name
+		sudo chown -R $apache_user:$apache_user /var/www/svn/$project_name
 		sudo chmod -R go-rwx /var/www/svn/$project_name
 
 		if [[ $dbtrac = "1" ]]; then
@@ -170,8 +183,9 @@ tracsvn(){
 			sudo mkdir -p /var/www/trac/public/$project_name
 			sudo trac-admin /var/www/trac/public/$project_name initenv $project_name sqlite:db/trac.db svn /var/www/svn/$project_name
 		fi
-
-		sudo chown -R apache:apache /var/www/trac/public/$project_name 
+		
+		sudo mkdir -p /var/www/trac/public
+		sudo chown -R $apache_user:$apache_user /var/www/trac/public/$project_name 
 		sudo chmod -R o-rwx /var/www/trac/public/$project_name
 		sudo chmod g+w /var/www/trac/public/$project_name/conf/trac.ini
 
