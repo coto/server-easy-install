@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Updating Sandbox..."
-sandbox_dir='/home/coto/sandbox'
+sandbox_dir=`pwd`
 dir=`ls $sandbox_dir`
 for d in $dir
 do	
