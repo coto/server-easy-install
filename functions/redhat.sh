@@ -61,7 +61,7 @@ profileUser(){
 # Update and Install Apache, PHP, MySQL, Django, Subversion, TRAC
 ####################################################################
 updateInstall(){
-	echo -e "$cyan======= Updating and Installing Apache, PHP, MySQL, Django, Subversion, TRAC ======$endColor"
+	echo -e "$cyan======= Updating and Installing Apache, PHP, MySQL, Django, Subversion ======$endColor"
 
 	echo -e "$cyan##### Updating Operating System... #####$endColor" 
 	yum clean all
@@ -85,10 +85,12 @@ updateInstall(){
 	# /etc/init.d/vboxdrv setup
 	# yum -y remove gcc kernel-devel
 
-	echo -e "$cyan#####    Starting apache & mysql at boot time   #####$endColor"
-	sudo /sbin/chkconfig httpd on
-	sudo /sbin/chkconfig mysqld on
-
+	echo -e "$cyan================ Packages Installed successfully ================$endColor"
+}
+####################################################################
+# Install TRAC
+####################################################################
+InstallTrac(){
 	echo -e "$cyan##### Trac Install #####$endColor"  
 	sudo easy_install Trac
 
@@ -98,7 +100,7 @@ updateInstall(){
 	cd ganttcalendar
 	python setup.py bdist_egg
 	easy_install dist/TracGanttCalendarPlugin-0.1-py2.4.egg
-	echo -e "$cyan================ Packages Installed successfully ================$endColor"
+	echo -e "$cyan================ Trac Installed successfully ================$endColor"
 }
 ####################################################################
 # Create VirtualHosts

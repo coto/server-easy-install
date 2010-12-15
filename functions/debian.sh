@@ -50,7 +50,7 @@ profileUser(){
 # Update and Install Apache, PHP, MySQL, Django, Subversion, TRAC
 ####################################################################
 updateInstall(){
-	echo -e "$cyan======= Updating and Installing Apache, PHP, MySQL, Django, Subversion, TRAC ======$endColor"
+	echo -e "$cyan======= Updating and Installing Apache, PHP, MySQL, SQLite, Django, Subversion ======$endColor"
 
 	echo -e "$cyan##### Updating Operating System... #####$endColor" 
 	apt-get -y update
@@ -61,7 +61,7 @@ updateInstall(){
 	apt-get -y install mysql-server-5.1 libapache2-mod-auth-mysql
 	apt-get -y install php5 libapache2-mod-php5 php5-mysql php5-cli php5-common php5-mcrypt php5-gd 
 	apt-get -y install python-mysqldb libapache2-mod-python python-django python-setuptools
-	apt-get -y install subversion
+	apt-get -y install subversion sqlite
 
 	#wget  http://www.djangoproject.com/download/1.1.1/tarball/
 	#tar xzvf Django-1.1.1.tar.gz
@@ -69,6 +69,13 @@ updateInstall(){
 	#python setup.py install
 	#cd ../
 	#rm -rf Django-1.1.1*
+
+	echo -e "$cyan================ Packages Installed successfully ================$endColor"
+}
+####################################################################
+# Install TRAC
+####################################################################
+InstallTrac(){
 
 	echo -e "$cyan##### Trac Install #####$endColor"  
 	sudo easy_install Trac
@@ -79,7 +86,7 @@ updateInstall(){
 	cd ganttcalendar
 	python setup.py bdist_egg
 	easy_install dist/TracGanttCalendarPlugin-0.1-py2.6.egg
-	echo -e "$cyan================ Packages Installed successfully ================$endColor"
+	echo -e "$cyan================ Trac Installed successfully ================$endColor"
 }
 ####################################################################
 # Create VirtualHosts

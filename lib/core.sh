@@ -125,7 +125,7 @@ printMenu(){
 	echo "What do you want to do?"
 	echo -e "\t1) Create or create again the $user user"
 	echo -e "\t2) Create users profile (color in bash)"
-	echo -e "\t3) Update and Install (Apache, PHP, MySQL, Django, Subversion, TRAC)"
+	echo -e "\t3) Update and Install (Apache, PHP, MySQL, SQLite, Django, Subversion)"
 	echo -e "\t4) Configurating SSH and IPTABLES"
 	echo -e "\t5) Configure and securitizing Apache"
 	echo -e "\t6) Configure and securitizing MySQL"
@@ -133,9 +133,9 @@ printMenu(){
 	echo -e "\t8) Create a Mail Server"
 	echo -e "\t9) Create a cron backup (mysql, apache, trac & svn)"
 	echo -e "\t10) Set DNS and to add Google Apps MX records (Only SliceHost.com)"
-	#echo -e "\t11) Set Hooks on SVN"
+	echo -e "\t11) Install Trac and its Plugins"
 	echo -e "\t12) I do not know, exit!"
-	#echo -e "\t7) Create VirtualHosts"
+	#echo -e "\t13) Create VirtualHosts"
 	read option;
 	while [[ $option -gt 12 || ! $(echo $option | grep '^[1-9]') ]]
 	do
@@ -158,9 +158,9 @@ runOption(){
 		8) mailServer;;
 		9) cronBackup;;
 		10) set_dns;;
-#		11) hooks_svn;;
+		11) InstallTrac;;
 		12) exit
-#		7) CreateVirtualHosts;;
+#		13) CreateVirtualHosts;;
 	esac 
 	echo "Press any Key to continue"
 	read x
