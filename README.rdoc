@@ -13,6 +13,7 @@
 * Apache
 * Django (Web Framework of awesome Python)
 * MySQL
+* Cron Backup of databases, websites, etc
 * Mail Server
 * Virtualhost
 
