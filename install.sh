@@ -1,12 +1,12 @@
 #!/bin/bash
 ####################################################################
-# Fast and Easy Web Server Installation
+# Fast and Easy Web Server Installation (Optimized for WordPress)
 # This script help you to install and configure a Linux server with:
 #	- TRAC
 #	- SVN
-#	- Iptables (Most secure)
-#	- SSH (Change port by default and securitize)
-#	- Apache
+#	- Iptables (More secure)
+#	- SSH (Change ports by default and securitize)
+#	- Apache, PHP
 #	- Django (Web Framework of awesome Python)
 #	- MySQL
 #	- Mail Server
