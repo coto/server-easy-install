@@ -17,9 +17,9 @@ shootProfile(){
 	KERNEL=`uname -r`
 	MACH=`uname -m`
 
-	if [ "{$OS}" == "windowsnt" ]; then
+	if [ "${OS}" == "windowsnt" ]; then
 		OS=windows
-	elif [ "{$OS}" == "darwin" ]; then
+	elif [ "${OS}" == "darwin" ]; then
 		OS=mac
 	else
 		OS=`uname`
