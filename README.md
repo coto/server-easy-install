@@ -34,7 +34,14 @@ Install easily a secure web server on linux. You can choose what you want to ins
 
 ## Installation
 
- bash FOLDER_SCRIPT/install.sh
+    * Download the project:
+      curl -LOk https://github.com/coto/server-easy-install/archive/0.3.tar
+    * Extract the tar
+      tar -xvf 0.3.tar
+    * Create a config file from config.sample
+      cp config.sample config
+    * Run the bash
+      bash server-easy-install-0.3/install.sh
 
 
 ## Licensed under the GPL
