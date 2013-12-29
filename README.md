@@ -1,10 +1,10 @@
 # Fast and Easy Web Server Installation
  
-Author: Coto Augosto C.
-Twitter: http://twitter.com/coto
-URL: http://www.beecoss.com
-Created: Mar 16th, 2010
-Last Updated: Dec 29th, 2013
+- Author: Coto Augosto C.
+- Twitter: http://twitter.com/coto
+- URL: http://www.beecoss.com
+- Created: Mar 16th, 2010
+- Last Updated: Dec 29th, 2013
 
 ## Description
 Install easily a secure web server on linux. You can choose what you want to install between a lot of packages.
