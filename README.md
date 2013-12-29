@@ -35,9 +35,9 @@ Install easily a secure web server on linux. You can choose what you want to ins
 ## Installation
 
     * Download the project:
-      curl -LOk https://github.com/coto/server-easy-install/archive/0.3.tar
+      curl -LOk https://github.com/coto/server-easy-install/archive/0.3.tar.gz
     * Extract the tar
-      tar -xvf 0.3.tar
+      tar -xvf 0.3.tar.gz
     * Create a config file from config.sample
       cp config.sample config
     * Run the bash
