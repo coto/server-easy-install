@@ -9,7 +9,7 @@
 debug=""
 color='\e[1;37;44m'
 endColor='\e[0m'
-mailAdmin='contact@protoboard.cl'
+mailAdmin='contact@beecoss.com'
 
 ####################################################################
 # Get User, password and port

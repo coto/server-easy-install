@@ -10,7 +10,7 @@ host=$1
 project=$2
 
 if [ "$host" = "" ]; then
-	echo -e "Protoboard or EPSON?:"
+	echo -e "Beecoss for example:"
 	read host
 fi
 

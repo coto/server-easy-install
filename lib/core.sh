@@ -77,41 +77,6 @@ shootProfile
 #echo "MACH: $MACH"
 #echo "========"
 
-
-####################################################################
-# Get Distro Based on... (Deprecated)
-####################################################################
-get_DistroBasedOn(){
-	if [[ ! $OS = "linux" ]]; then
-		echo "hol"
-		return
-	fi
-	regExpLsbFile="/etc/(.*)[-_]"
-
-	etcFiles=`ls /etc/*[-_]{release,version} 2>/dev/null`
-	for file in $etcFiles; do
-	  if [[ $file =~ $regExpLsbFile ]]; then
-		 DistroBasedOn=${BASH_REMATCH[1]}
-		 echo ${BASH_REMATCH[1]}
-		 break
-	  else
-		 echo "??? Should not occur: Don't find any etcFiles ???"
-		 exit 1
-	  fi
-	done
-
-	DistroBasedOn=`lowercase $DistroBasedOn`
-
-	case $DistroBasedOn in
-		suse) 	DistroBasedOn="opensuse" ;;
-		linux)	DistroBasedOn="linuxmint" ;;
-	esac
-
-	readonly DistroBasedOn
-}
-#get_DistroBasedOn
-#echo $DistroBasedOn
-
 ####################################################################
 # Print Menu
 ####################################################################
