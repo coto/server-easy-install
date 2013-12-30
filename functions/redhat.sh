@@ -100,10 +100,6 @@ InstallTrac(){
 
 	echo -e "$cyan##### Trac Plugins Install #####$endColor" 
 	easy_install TracAccountManager TracProjectMenu
-	svn co http://recurser.com/svn/ganttcalendar/trunk/ ganttcalendar
-	cd ganttcalendar
-	python setup.py bdist_egg
-	easy_install dist/TracGanttCalendarPlugin-0.1-py2.4.egg
 	echo -e "$cyan================ Trac Installed successfully ================$endColor"
 }
 
