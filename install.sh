@@ -10,9 +10,9 @@
 #	- Django (Web Framework of awesome Python)
 #	- MySQL
 #	- Mail Server
-# Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl>
+# Author: Coto Augosto C.
 # Help: Rodrigo Bustos L. <rbustosx@gmail.com>
-# URL: http://protoboard.cl
+# URL: http://beecoss.com
 # Created: Apr 1, 2010 
 ####################################################################
 

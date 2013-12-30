@@ -9,7 +9,7 @@ sudo echo "
 #!/bin/sh
 ####################################################################
 # A simple backup script to SVN, TRAC, MYSQL & APACHE FOLDERS
-# Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl> / Rodrigo Bustos L.
+# Author: Coto Augosto C. / Rodrigo Bustos L.
 # URL: http://www.protoboard.cl
 # Created: Mar 22, 2010 04:44:42
 # Version: 3.4

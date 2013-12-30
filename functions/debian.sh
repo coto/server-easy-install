@@ -22,14 +22,14 @@ createUser(){
 	echo -e "$cyan============================ Creating a user $user... =============================$endColor"
 
 	apt-get install mkpasswd
-        echo -e "$cyan##### Deleting user $user #####$endColor"
+        echo -e "$cyan##### Deleting user: $user #####$endColor"
 	userdel -r $user
 
-	echo -e "$cyan##### Add user $user #####$endColor"
+	echo -e "$cyan##### Adding the user: $user #####$endColor"
 	adduser --system $user  --uid 550  --ingroup admin
 	usermod -p `mkpasswd $passwd` $user
 
-	echo -e "$cyan##### Add wheel group to sudo #####$endColor"
+	echo -e "$cyan##### Adding wheel group to sudo #####$endColor"
 	sed '/^#.*%admin\tALL=(ALL)\tALL.*/ s/^#//' /etc/sudoers > tmp
 	cat tmp > /etc/sudoers
 	echo -e "$cyan==================== User $user created successfully ====================$endColor"

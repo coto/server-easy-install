@@ -1,8 +1,8 @@
 #!/bin/bash
 ####################################################################
 # Generate a public/private key
-# Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl>
-# URL: http://protoboard.cl
+# Author: Coto Augosto C.
+# URL: http://beecoss.com
 # Created: Mar 5, 2010
 ####################################################################
 

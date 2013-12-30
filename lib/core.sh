@@ -125,7 +125,7 @@ printMenu(){
 	clear
 	echo -e "$cyan Fast and Easy Web Server Installation $endColor"
 	echo "Choose an option writing its number and press enter:"
-	echo -e "\t1) Create or create again the $user user"
+	echo -e "\t1) Create a user"
 	echo -e "\t2) Create users profile (color in bash)"
 	echo -e "\t3) Update and Install (Apache, PHP, MySQL, SQLite, Django, Subversion)"
 	echo -e "\t4) Configurating SSH and IPTABLES"
@@ -139,7 +139,7 @@ printMenu(){
 	echo -e "\t12) I do not know, exit!"
 	#echo -e "\t13) Create VirtualHosts"
 	read option;
-	while [[ $option -gt 12 || ! $(echo $option | grep '^[1-9]') ]]
+	while [[ $option -gt 12 || ! $(echo $option | grep '^[1-9]$') ]]
 	do
 		printMenu
 	done

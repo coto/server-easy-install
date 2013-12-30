@@ -1,7 +1,7 @@
 ####################################################################
 # Install properly everything to send emails
-# Author: Rodrigo Augosto C. (coto) <contact@protoboard.cl>
-# URL: http://protoboard.cl
+# Author: Coto Augosto C.
+# URL: http://beecoss.com
 # Created: Mar 22, 2010 04:44:42
 ####################################################################
 # to see log file
