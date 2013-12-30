@@ -10,7 +10,7 @@ lowercase(){
 }
 
 ####################################################################
-# Get infor about system
+# Get System Info
 ####################################################################
 shootProfile(){
 	OS=`lowercase \`uname\``
@@ -124,7 +124,7 @@ printMenu(){
 	fi
 	clear
 	echo -e "$cyan Fast and Easy Web Server Installation $endColor"
-	echo "What do you want to do?"
+	echo "Choose an option writing its number and press enter:"
 	echo -e "\t1) Create or create again the $user user"
 	echo -e "\t2) Create users profile (color in bash)"
 	echo -e "\t3) Update and Install (Apache, PHP, MySQL, SQLite, Django, Subversion)"
@@ -145,6 +145,7 @@ printMenu(){
 	done
 	runOption
 }
+
 ####################################################################
 # Run an Option
 ####################################################################

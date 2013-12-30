@@ -10,6 +10,7 @@ apache_service='/etc/init.d/apache2'
 
 userProfile='export PS1="\[\e[0;36m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
 rootProfile='export PS1="\[\e[1;31m\]\u\[\e[1;33m\]@\H \[\033[0;36m\] \w\[\e[0m\]$ "'
+
 ####################################################################
 # Create USER
 ####################################################################
@@ -33,6 +34,7 @@ createUser(){
 	cat tmp > /etc/sudoers
 	echo -e "$cyan==================== User $user created successfully ====================$endColor"
 }
+
 ####################################################################
 # Profile USER
 ####################################################################
@@ -46,6 +48,7 @@ profileUser(){
 	source /root/.bashrc
 	echo -e "$cyan==================== Bash Profile to User root created ====================$endColor"
 }
+
 ####################################################################
 # Update and Install Apache, PHP, MySQL, Django, Subversion, TRAC
 ####################################################################
@@ -72,6 +75,7 @@ updateInstall(){
 
 	echo -e "$cyan================ Packages Installed successfully ================$endColor"
 }
+
 ####################################################################
 # Install TRAC
 ####################################################################
@@ -88,6 +92,7 @@ InstallTrac(){
 	easy_install dist/TracGanttCalendarPlugin-0.1-py2.6.egg
 	echo -e "$cyan================ Trac Installed successfully ================$endColor"
 }
+
 ####################################################################
 # Create VirtualHosts
 ####################################################################

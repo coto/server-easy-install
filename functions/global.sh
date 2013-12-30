@@ -50,6 +50,7 @@ sshIptables(){
 	sudo $ssh_service reload
 	echo -e "$cyan=============== SSH & IPTABLES setted successfully ===============$endColor"
 }
+
 ####################################################################
 # Configure and securitizing Apache
 ####################################################################
@@ -88,6 +89,7 @@ secureApache(){
 	cat tmp > $apache_conf
 	echo -e "$cyan================ Apache was securitize successfully ===============$endColor"
 }
+
 ####################################################################
 # Configure and securitizing MySQL
 ####################################################################
@@ -134,6 +136,7 @@ secureMySQL(){
 	service $mysql_service restart
 	echo -e "$cyan==================== MySQL was securitize successfully ===============$endColor"
 }
+
 ####################################################################
 # Trac and SVN configuration
 ####################################################################
